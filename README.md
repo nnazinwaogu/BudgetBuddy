@@ -188,7 +188,7 @@ For questions, issues, or feature requests, please:
 
 ## 🎯 Project Status
 
-- **Version History**: [1.0.0-ALPHA](CHANGELOG.md)
+- **Version History**: [0.1.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
 - **Tests**: ✅ All passing (18/18)
 - **CLI Interface**: 🔄 In planning
