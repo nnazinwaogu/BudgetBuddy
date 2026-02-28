@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 class TransactionTest {
@@ -23,6 +25,7 @@ class TransactionTest {
         
         assertNotNull(transaction.getId());
         assertEquals(String.class, transaction.getId().getClass());
+        assertEquals(LocalDateTime.class, transaction.getLoggedTime().getClass());
         assertNotNull(transaction.getLoggedTime());
         assertEquals("Grocery shopping at Walmart", transaction.getDescription());
         assertEquals(new BigDecimal("45.99"), transaction.getAmount());
