@@ -182,13 +182,13 @@ This project is open source and available under the MIT License.
 ## 📞 Support
 
 For questions, issues, or feature requests, please:
-2. Review existing issues
-3. Create a new issue with detailed information
-4. Include steps to reproduce any bugs
+1. Review existing issues
+2. Create a new issue with detailed information
+3. Include steps to reproduce any bugs
 
 ## 🎯 Project Status
 
-- **Version History**: [1.0.0-ALPHA](CHANGELOG.md)
+- **Version History**: [0.1.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
 - **Tests**: ✅ All passing (18/18)
 - **CLI Interface**: 🔄 In planning
