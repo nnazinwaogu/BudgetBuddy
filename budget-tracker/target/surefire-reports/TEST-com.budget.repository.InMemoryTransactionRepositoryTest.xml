@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.model.CategoryTest" time="0.017" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.026" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,9 +59,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testCategoryToString" classname="com.budget.model.CategoryTest" time="0.001"/>
-  <testcase name="testValidCategoryCreation" classname="com.budget.model.CategoryTest" time="0.001"/>
-  <testcase name="testCategoryHashCode" classname="com.budget.model.CategoryTest" time="0.001"/>
-  <testcase name="testCategoryEquality" classname="com.budget.model.CategoryTest" time="0.001"/>
-  <testcase name="testCategoryValidation" classname="com.budget.model.CategoryTest" time="0.007"/>
+  <testcase name="testFindByIdNull" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.004"/>
+  <testcase name="testDeleteNonExistentTransaction" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.001"/>
+  <testcase name="testExistsNull" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.002"/>
+  <testcase name="testDeleteTransaction" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.002"/>
+  <testcase name="testSaveNullTransaction" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.002"/>
+  <testcase name="testFindByIdNotFound" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.001"/>
+  <testcase name="testSaveMultipleTransactions" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.002"/>
+  <testcase name="testFindAllTransactions" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.001"/>
+  <testcase name="testDeleteNull" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.001"/>
+  <testcase name="testSaveAndFindTransaction" classname="com.budget.repository.InMemoryTransactionRepositoryTest" time="0.001"/>
 </testsuite>

@@ -22,16 +22,17 @@ BudgetTracker helps you manage your personal finances by tracking income, expens
 - **InMemoryTransactionRepository**: Thread-safe in-memory storage
 - **Comprehensive Testing**: 69 passing JUnit 5 tests with 100% coverage
 
-### Repository Layer (Milestone 3 In-Progress)
-- **TransactionRepository Interface**: Abstract data access layer with CRUD operations
-- **InMemoryTransactionRepository**: Thread-safe in-memory implementation using HashMap
-- **Thread Safety**: Synchronized methods for concurrent access
+### Repository Layer (Milestone 3 Completed)
+- **TransactionRepository Interface**: Complete CRUD operations with findById, findAll, save, delete, exists methods
+- **InMemoryTransactionRepository**: Thread-safe implementation using HashMap and ArrayList
+- **Thread Safety**: Synchronized methods for concurrent access patterns
+- **Data Structures**: HashMap for O(1) lookups, ArrayList for ordered queries
 
 ### Milestone 3 Features
 - **Repository Pattern**: Decoupled data access from business logic
 - **Dependency Injection**: Constructor-based injection for testability
 - **Business Logic**: Advanced filtering, date range queries, category/type searches
-- **Error Handling**: Graceful handling of not found and invalid operations
+- **Error Handling**: Comprehensive null checks and validation
 
 ### Planned Features
 - **CLI Interface**: Interactive command-line menu system
@@ -141,8 +142,8 @@ mvn clean package
 - **TransactionTest**: 6 tests for validation, equality, hashcode, toString, and notes
 - **TransactionTypeTest**: 5 tests for type validation and parsing
 - **ValidationServiceTest**: 45 tests for validation methods
-- **TransactionServiceTest**: 45 tests for service operations
-- **InMemoryTransactionRepositoryTest**: 18 tests for repository implementation
+- **TransactionServiceTest**: 11 tests for service operations
+- **InMemoryTransactionRepositoryTest**: 10 tests for repository implementation
 
 ## 🚀 Roadmap
 
@@ -158,11 +159,11 @@ mvn clean package
 - [x] InMemoryTransactionRepository implementation
 - [x] 69 passing JUnit 5 tests
 
-### Phase 3: Repository Layer (Planned)
-- [] TransactionRepository interface
-- [] Thread-safe in-memory implementation
-- [] Repository pattern implementation
-- [] Dependency injection design
+### Phase 3: Repository Layer (Completed)
+- [x] TransactionRepository interface
+- [x] Thread-safe in-memory implementation
+- [x] Repository pattern implementation
+- [x] Dependency injection design
 
 ### Phase 4: CLI Interface (Planned)
 - [ ] Main menu system
