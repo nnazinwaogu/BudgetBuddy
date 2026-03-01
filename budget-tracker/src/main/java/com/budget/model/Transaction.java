@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.budget.service.ValidationService;
+
 public final class Transaction {
     private final String id;
     private final String description;
@@ -20,34 +22,14 @@ public final class Transaction {
         this.id = UUID.randomUUID().toString(); 
         this.loggedTime = LocalDateTime.now(); 
 
-        if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("Transaction ID cannot be null or empty");
-        }
-        if (loggedTime == null) {
-            throw new IllegalArgumentException("Transaction logged time cannot be null");
-        }
-       
-        if (description == null || description.trim().isEmpty()) {
-            throw new IllegalArgumentException("Transaction description cannot be null or empty");
-        }
-        if (description.length() > 200) {
-            throw new IllegalArgumentException("Transaction description cannot exceed 200 characters");
-        }
-        if (amount == null) {
-            throw new IllegalArgumentException("Transaction amount cannot be null");
-        }
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Transaction amount must be greater than zero");
-        }
-        if (date == null) {
-            throw new IllegalArgumentException("Transaction date cannot be null");
-        }
-        if (category == null) {
-            throw new IllegalArgumentException("Transaction category cannot be null");
-        }
-        if (notes != null && notes.length() > 500) {
-            throw new IllegalArgumentException("Transaction notes cannot exceed 500 characters");
-        }
+        // Validate using ValidationService
+        ValidationService.validateNotNull(id, "Transaction ID");
+        ValidationService.validateNotNull(loggedTime, "Transaction logged time");
+        ValidationService.validateTransactionDescription(description);
+        ValidationService.validateTransactionAmount(amount);
+        ValidationService.validateTransactionDate(date);
+        ValidationService.validateTransactionCategory(category);
+        ValidationService.validateTransactionNotes(notes);
     
         this.description = description.trim();
         this.amount = amount;

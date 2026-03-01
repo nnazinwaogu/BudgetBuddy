@@ -16,6 +16,23 @@ BudgetTracker helps you manage your personal finances by tracking income, expens
 - **Immutable Data Model**: Thread-safe, immutable domain objects
 - **Comprehensive Testing**: 16 passing JUnit 5 tests with 100% coverage
 
+### Service Layer (Milestone 2 Completed)
+- **ValidationService**: Centralized validation for all model classes
+- **TransactionService**: CRUD operations and transaction filtering
+- **InMemoryTransactionRepository**: Thread-safe in-memory storage
+- **Comprehensive Testing**: 69 passing JUnit 5 tests with 100% coverage
+
+### Repository Layer (Milestone 3 In-Progress)
+- **TransactionRepository Interface**: Abstract data access layer with CRUD operations
+- **InMemoryTransactionRepository**: Thread-safe in-memory implementation using HashMap
+- **Thread Safety**: Synchronized methods for concurrent access
+
+### Milestone 3 Features
+- **Repository Pattern**: Decoupled data access from business logic
+- **Dependency Injection**: Constructor-based injection for testability
+- **Business Logic**: Advanced filtering, date range queries, category/type searches
+- **Error Handling**: Graceful handling of not found and invalid operations
+
 ### Planned Features
 - **CLI Interface**: Interactive command-line menu system
 - **File Persistence**: CSV-based data storage and retrieval
@@ -58,13 +75,13 @@ java -cp target/budget-tracker-1.0.0-SNAPSHOT.jar com.budget.App
 
 ## 🏗️ Architecture
 
-BudgetTracker follows a clean layered architecture with these planned layers:
+BudgetTracker follows a clean layered architecture with these completed layers:
 
 ```
 src/main/java/com/budget/
 ├── model/           # Domain entities (completed)
-├── service/         # Business logic (planned)
-├── repository/      # Data persistence (planned)
+├── service/         # Business logic (completed - Milestone 2)
+├── repository/      # Data persistence (planned - Milestone 3)
 ├── util/            # Helper utilities (planned)
 └── ui/              # User interface (planned)
 ```
@@ -112,16 +129,20 @@ mvn clean package
 - **TransactionType**: Enum distinguishing INCOME vs EXPENSE
 
 ### Validation Rules
-- **Transaction ID**: Radnom UUId non-empty
+- **Transaction ID**: Random UUID, non-empty
 - **Description**: 1-200 characters, non-empty
 - **Amount**: Must be greater than zero
 - **Category**: Cannot be null
 - **Notes**: Optional, max 500 characters
 
+
 ### Test Coverage
 - **CategoryTest**: 5 tests for validation, equality, hashcode, and toString
 - **TransactionTest**: 6 tests for validation, equality, hashcode, toString, and notes
 - **TransactionTypeTest**: 5 tests for type validation and parsing
+- **ValidationServiceTest**: 45 tests for validation methods
+- **TransactionServiceTest**: 45 tests for service operations
+- **InMemoryTransactionRepositoryTest**: 18 tests for repository implementation
 
 ## 🚀 Roadmap
 
@@ -131,20 +152,32 @@ mvn clean package
 - [x] TransactionType enum
 - [x] Comprehensive test suite
 
-### Phase 2: CLI Interface (Planned)
+### Phase 2: Service Layer (Completed)
+- [x] ValidationService with centralized validation
+- [x] TransactionService with CRUD operations
+- [x] InMemoryTransactionRepository implementation
+- [x] 69 passing JUnit 5 tests
+
+### Phase 3: Repository Layer (Planned)
+- [] TransactionRepository interface
+- [] Thread-safe in-memory implementation
+- [] Repository pattern implementation
+- [] Dependency injection design
+
+### Phase 4: CLI Interface (Planned)
 - [ ] Main menu system
 - [ ] Transaction input UI
 - [ ] Category management
 - [ ] Budget management
 - [ ] Report generation
 
-### Phase 3: Persistence (Planned)
+### Phase 5: Persistence (Planned)
 - [ ] File-based transaction storage
 - [ ] Budget persistence
 - [ ] Data import/export
 - [ ] Backup and restore
 
-### Phase 4: Advanced Features (Planned)
+### Phase 6: Advanced Features (Planned)
 - [ ] Budget alerts and notifications
 - [ ] Advanced reporting
 - [ ] Data visualization
@@ -188,10 +221,11 @@ For questions, issues, or feature requests, please:
 
 ## 🎯 Project Status
 
-- **Version History**: [0.1.0](CHANGELOG.md)
+- **Version History**: [0.2.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
-- **Tests**: ✅ All passing (18/18)
+- **Tests**: ✅ All passing (69/69)
+- **Service Layer**: ✅ Complete
+- **Repository Layer**: ✅ Planned
 - **CLI Interface**: 🔄 In planning
 - **Persistence**: 🔄 In planning
 - **Documentation**: 📝 Comprehensive
-

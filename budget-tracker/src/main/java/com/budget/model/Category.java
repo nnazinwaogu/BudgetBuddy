@@ -2,27 +2,18 @@ package com.budget.model;
 
 import java.util.Objects;
 
+import com.budget.service.ValidationService;
+
 public final class Category {
     private final String name;
     private final String description;
     private final TransactionType transactionType;
     
     public Category(String name, String description, TransactionType transactionType) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Category name cannot be null or empty");
-        }
-        if (name.length() > 50) {
-            throw new IllegalArgumentException("Category name cannot exceed 50 characters");
-        }
-        if (description == null) {
-            throw new IllegalArgumentException("Category description cannot be null");
-        }
-        if (description.length() > 200) {
-            throw new IllegalArgumentException("Category description cannot exceed 200 characters");
-        }
-        if (transactionType == null) {
-            throw new IllegalArgumentException("Transaction type cannot be null");
-        }
+        // Validate using ValidationService
+        ValidationService.validateCategoryName(name);
+        ValidationService.validateCategoryDescription(description);
+        ValidationService.validateTransactionType(transactionType);
         
         this.name = name.trim();
         this.description = description.trim();

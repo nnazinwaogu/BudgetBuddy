@@ -3,27 +3,23 @@ package com.budget.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import com.budget.service.ValidationService;
+
 public class Budget {
     private final Category category;      // Immutable once set
     private BigDecimal monthlyLimit;      // Can be updated
     
     public Budget(Category category, BigDecimal monthlyLimit) {
-        // Validate: category must be expense category, limit > 0
-        if (!category.getTransactionType().equals(TransactionType.EXPENSE)) {
-            throw new IllegalArgumentException("Budgets only apply to expense categories");
-        }
-        if (monthlyLimit.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Budget limit must be positive");
-        }
+        // Validate using ValidationService
+        ValidationService.validateBudgetCategory(category);
+        ValidationService.validateBudgetLimit(monthlyLimit);
+        
         this.category = category;
         this.monthlyLimit = monthlyLimit;
     }
     
-    
     public void setMonthlyLimit(BigDecimal monthlyLimit) {
-        if (monthlyLimit.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Budget limit must be positive");
-        }
+        ValidationService.validateBudgetLimit(monthlyLimit);
         this.monthlyLimit = monthlyLimit;
     }
 

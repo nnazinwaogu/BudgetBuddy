@@ -1,3 +1,5 @@
+com\budget\model\BudgetTest.class
 com\budget\model\CategoryTest.class
 com\budget\model\TransactionTypeTest.class
 com\budget\model\TransactionTest.class
+com\budget\service\ValidationServiceTest.class

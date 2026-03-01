@@ -2,6 +2,8 @@ package com.budget.service;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.budget.model.Category;
 import com.budget.model.TransactionType;
@@ -31,17 +33,21 @@ public final class ValidationService {
     }
     
     /**
-     * Validates that a string is not null and not empty.
+     * Validates that a string is not empty.
      * 
      * @param value the string to validate
      * @param fieldName the name of the field being validated
      * @throws IllegalArgumentException if the string is null or empty
      */
     public static void validateNotEmpty(String value, String fieldName) {
-        if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException(fieldName + " cannot be null or empty");
+        if (value == null) {
+            throw new IllegalArgumentException(fieldName + " cannot be null");
+        }
+        if (value.trim().isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " cannot be empty");
         }
     }
+    
     
     /**
      * Validates that two objects are equal.
@@ -50,11 +56,12 @@ public final class ValidationService {
      * @param fieldName the name of the field being validated
      * @throws IllegalArgumentException if the objects are not equal
      */
-    public static void validateEqual(Object value, Object expectedValue, String fieldName) {
+    /*public static void validateEqual(Object value, Object expectedValue, String fieldName) {
         if (!Objects.equals(value, expectedValue)) {
             throw new IllegalArgumentException(fieldName + " must be equal to " + expectedValue);
         }
     }
+    */
 
     /**
      * Validates that a string does not exceed the specified maximum length.
@@ -122,6 +129,17 @@ public final class ValidationService {
             throw new IllegalArgumentException(fieldName + " must be positive");
         }
     }
+
+    /**
+     * Validates a transaction ID.
+     * Must be not null and not empty.
+     * @param id the transaction ID to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateTransactionId(String id) {
+        validateNotNull(id, "Transaction ID");
+        validateNotEmpty(id, "Transaction ID");
+    }
     
     /**
      * Validates a transaction description.
@@ -146,17 +164,7 @@ public final class ValidationService {
         validateGreaterThanZero(amount, "Transaction amount");
     }
     
-    /**
-     * Validates a transaction date.
-     * Must be not null.
-     * 
-     * @param date the transaction date to validate
-     * @throws IllegalArgumentException if validation fails
-     */
-    public static void validateTransactionDate(java.time.LocalDate date) {
-        validateNotNull(date, "Transaction date");
-        validateEqual(date, java.time.LocalDate.class, "Transaction date");
-    }
+
     
     /**
      * Validates a transaction category.
@@ -167,12 +175,53 @@ public final class ValidationService {
      */
     public static void validateTransactionCategory(Category category) {
         validateNotNull(category, "Transaction category");
-        validateEqual(category, Category.class, "Transaction category");
     }
     
     /**
+     * Validates a transaction type.
+     * Must be not null.
+     * Must be a valid transaction type (INCOME, EXPENSE, TRANSFER).
+     * 
+     * @param type the transaction type to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateTransactionType(TransactionType type) {
+        validateNotNull(type, "Transaction type");
+        if (!type.equals(TransactionType.INCOME) && !type.equals(TransactionType.EXPENSE) && !type.equals(TransactionType.TRANSFER)) {
+            throw new IllegalArgumentException("Invalid transaction type: " + type);
+        }
+    }
+    
+    /** Validates a transaction date.
+     * Must be not null and cannot be in the future.
+     * 
+     * @param date the transaction date to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateTransactionDate(LocalDate date) {
+        validateNotNull(date, "Transaction date");
+        if (date.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Transaction date cannot be in the future");
+        }
+    }
+
+    /**
+     * Validates a transaction logged time.
+     * Must be not null and cannot be in the future.
+     * 
+     * @param loggedTime the transaction logged time to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateTransactionLoggedTime(LocalDateTime loggedTime) {
+        validateNotNull(loggedTime, "Transaction logged time");
+        if (loggedTime.isAfter(LocalDateTime.now())) {
+            throw new IllegalArgumentException("Transaction logged time cannot be in the future");
+        }
+    }
+
+    /**
      * Validates transaction notes.
-     * Must not exceed 500 characters if not null.
+     * Optional field, but if provided, must not be null and must not exceed 500 characters.
      * 
      * @param notes the transaction notes to validate
      * @throws IllegalArgumentException if validation fails
@@ -180,42 +229,7 @@ public final class ValidationService {
     public static void validateTransactionNotes(String notes) {
         validateLength(notes, "Transaction notes", 500);
     }
-    
-    /**
-     * Validates a category name.
-     * Must be not null, not empty, and not exceed 50 characters.
-     * 
-     * @param name the category name to validate
-     * @throws IllegalArgumentException if validation fails
-     */
-    public static void validateCategoryName(String name) {
-        validateString(name, "Category name", 50);
-    }
-    
-    /**
-     * Validates a category description.
-     * Must be not null and not exceed 200 characters.
-     * 
-     * @param description the category description to validate
-     * @throws IllegalArgumentException if validation fails
-     */
-    public static void validateCategoryDescription(String description) {
-        validateNotNull(description, "Category description");
-        validateLength(description, "Category description", 200);
-    }
-    
-    /**
-     * Validates a transaction type.
-     * Must be not null.
-     * 
-     * @param type the transaction type to validate
-     * @throws IllegalArgumentException if validation fails
-     */
-    public static void validateTransactionType(TransactionType type) {
-        validateNotNull(type, "Transaction type");
-        validateEqual(type, TransactionType.class, "Transaction type");
-    }
-    
+
     /**
      * Validates a budget category.
      * Must be not null and must be an expense category.
@@ -228,6 +242,29 @@ public final class ValidationService {
         if (!category.getTransactionType().equals(TransactionType.EXPENSE)) {
             throw new IllegalArgumentException("Budgets only apply to expense categories");
         }
+    }
+    
+    /**
+     * Validates a category name.
+     * Must be not null, not empty, and not exceed 50 characters.
+     * 
+     * @param name the category name to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateCategoryName(String name) {
+        validateString(name, "Category name", 50);   
+    }
+    
+    /**
+     * Validates a category description.
+     * Must be not null and not exceed 200 characters.
+     * 
+     * @param description the category description to validate
+     * @throws IllegalArgumentException if validation fails
+     */
+    public static void validateCategoryDescription(String description) {
+        validateNotNull(description, "Category description");
+        validateLength(description, "Category description", 200);
     }
     
     /**
@@ -244,13 +281,14 @@ public final class ValidationService {
     
     /**
      * Validates a transaction type string.
-     * Must be a valid transaction type (INCOME, EXPENSE, TRANSFER).
+     * Must be not null, not empty, and must correspond to a valid TransactionType enum value.
      * 
      * @param type the transaction type string to validate
      * @throws IllegalArgumentException if validation fails
      */
     public static void validateTransactionTypeString(String type) {
-        validateNotEmpty(type, "Transaction type");
+        validateNotNull(type, "Transaction type");
+        validateNotEmpty(type, "Transaction type");      
         if (!TransactionType.isValidType(type)) {
             throw new IllegalArgumentException("Invalid transaction type: " + type);
         }

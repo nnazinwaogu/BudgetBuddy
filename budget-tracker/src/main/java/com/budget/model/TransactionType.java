@@ -6,7 +6,7 @@ public enum TransactionType {
     TRANSFER;
     
     public static boolean isValidType(String type) {
-        if (type == null) {
+        if (type == null || type.trim().isEmpty()) {
             return false;
         }
         

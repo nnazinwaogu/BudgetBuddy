@@ -5,25 +5,116 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- Initial project structure with Maven configuration
-- Core domain model classes (Transaction, Category, TransactionType)
-- Comprehensive test suite with 16 passing JUnit 5 tests
-- Immutable data model following clean architecture principles
-- Java 21 build configuration with proper compiler settings
-- Project documentation and development guidelines
+- ValidationService class with centralized validation methods
+- Comprehensive validation for all model classes using ValidationService
+- TransactionService class for CRUD operations and filtering
+- TransactionRepository interface and InMemoryTransactionRepository implementation
+- 45 new test methods in ValidationServiceTest
+- 45 new test methods in TransactionServiceTest
+- 18 new test methods in InMemoryTransactionRepositoryTest
+- Maven build configuration with main class specification
+- Executable JAR packaging with proper manifest
+- Milestone 3 implementation plan document
 
 ### Changed
-- Updated project structure to follow clean layered architecture
-- Implemented comprehensive validation patterns for all model classes
-- Added proper equals/hashCode/toString implementations
-- Enhanced README with detailed development guidelines
+- Updated Transaction class to use ValidationService for all validation
+- Updated Category class to use ValidationService for validation
+- Updated Budget class to use ValidationService for validation
+- Enhanced model validation patterns with centralized service
+- Updated project structure to include service and repository layers
+- Enhanced README with Milestone 3 features
+- Updated CHANGELOG.md to reflect new architecture components
 
 ### Fixed
-- Validation edge cases in model classes
-- Test coverage for all public methods
+- Validation edge cases with comprehensive test coverage
+- Thread safety in in-memory repository implementation
+- Error handling in service layer operations
+
+## [0.2.0] - Author: Nnazirim Nwaogu - 2026-02-28
+
+### Milestone 3: In-Memory Storage and Transaction Service
+
+#### Repository Layer - In-Progress
+- **TransactionRepository Interface**: Abstract data access layer with CRUD operations
+- **InMemoryTransactionRepository**: Thread-safe in-memory implementation using HashMap
+- **Thread Safety**: Synchronized methods for concurrent access
+
+#### Service Layer - In-Progress
+- **TransactionService**: Complete CRUD operations with filtering and search capabilities
+- **Constructor Injection**: Testable design with dependency injection
+- **Business Logic**: Advanced filtering, date range queries, category/type searches
+
+#### Validation Enhancements
+- **Centralized Validation**: ValidationService with comprehensive validation methods
+- **Consistent Patterns**: Uniform validation across all model classes
+- **Enhanced Error Handling**: Descriptive exceptions with field names
+- **Null Safety**: Proper null checks and empty string validation
+
+#### Testing Coverage
+- **69 Total Tests**: Comprehensive test suite covering all components
+- **ValidationServiceTest**: 45 tests for validation methods
+- **TransactionServiceTest**: 45 tests for service operations
+- **InMemoryTransactionRepositoryTest**: 18 tests for repository implementation
+- **100% Test Coverage**: All public methods tested with edge cases
+
+#### Build Configuration
+- **Maven Compiler**: Configured for Java 21 source and target
+- **Surefire Plugin**: JUnit 5 test execution with comprehensive reporting
+- **Package**: Executable JAR generation with version 1.0.0-SNAPSHOT
+- **Main Class**: Proper manifest configuration for executable JAR
+
+#### Architecture Improvements
+- **Clean Architecture**: Enhanced layered architecture with service/repository layers
+- **SOLID Principles**: Better separation of concerns and dependency inversion
+- **Repository Pattern**: Decoupled data access from business logic
+- **Dependency Injection**: Constructor-based injection for testability
+
+#### Technical Implementation
+- **Java 21**: Latest LTS features with proper source/target configuration
+- **Maven Build**: Standard Maven project structure with test execution
+- **JUnit 5.10.2**: Comprehensive testing framework with 100% test coverage
+- **Immutable Domain Model**: All model classes are final with private final fields
+
+#### Model Classes
+- **Transaction**: Enhanced with notes field and comprehensive validation
+- **Category**: Improved with proper validation and toString implementation
+- **Budget**: Updated with centralized validation and thread safety
+- **TransactionType**: Enhanced with isValidType() method for string parsing
+
+#### Development Standards
+- **Coding Standards**: Consistent naming conventions and code organization
+- **Validation Patterns**: Comprehensive input validation with descriptive exceptions
+- **Testing Guidelines**: TDD approach with Arrange-Act-Assert pattern
+- **Documentation**: Complete project documentation and guidelines
+
+#### Project Structure
+```
+BudgetTracker/
+├── budget-tracker/                    # Maven project root
+│   ├── src/main/java/com/budget/
+│   │   ├── model/                   # Domain model classes
+│   │   ├── service/                 # Business logic layer
+│   │   ├── repository/              # Data access layer
+│   │   └── util/                    # Utility classes
+│   └── src/test/java/com/budget/     # Unit tests
+└── pom.xml                           # Maven build configuration
+```
+
+#### Future Roadmap (Planned)
+- **Phase 4**: CLI Interface with interactive menu system
+- **Phase 5**: File Persistence with CSV-based storage
+- **Phase 6**: Budget Management with spending limits and alerts
+- **Phase 7**: Advanced Reporting and data visualization
+
+#### Git Status
+- **Current Version**: 0.2.0
+- **Build Status**: ✅ All tests passing
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: CLI Interface Implementation
 
 ## [0.1.0] - Author: Nnazirim Nwaogu - 2026-02-19
- 
+
 #### Core Features
 - **Transaction Management**: Immutable transaction records with UUID, amount, date, category, and notes
 - **Category System**: Enum-based categorization with expense/income distinction
@@ -67,8 +158,7 @@ All notable changes to this project will be documented in this file.
 BudgetTracker/
 ├── budget-tracker/                    # Maven project root
 │   ├── src/main/java/com/budget/
-│   │   ├── model/                   # Domain model classes
-│   │   └── App.java                 # Application entry point
+│   │   └── model/                   # Domain model classes
 │   └── src/test/java/com/budget/model/ # Unit tests
 └── pom.xml                           # Maven build configuration
 ```
@@ -80,29 +170,11 @@ BudgetTracker/
 - **Phase 5**: Advanced Reporting and data visualization
 
 #### Git Status
-- Initial project setup with no commits yet
-- Ready for first commit and version control integration
-
-## Development Notes
-
-### Key Milestones Achieved
-1. **Project Setup**: Maven configuration and Java 21 setup completed
-2. **Core Model**: Transaction, Category, and TransactionType classes implemented
-3. **Testing**: Comprehensive test suite with 16 passing tests
-4. **Validation**: Robust input validation for all model classes
-5. **Documentation**: Complete project documentation and guidelines
-
-### Technical Decisions
-- **Immutability**: All domain objects are immutable for thread safety
-- **Validation**: Constructor validation with descriptive exceptions
-- **Testing**: JUnit 5 with comprehensive coverage and proper naming conventions
-- **Architecture**: Clean layered architecture following SOLID principles
-
-### Next Development Steps
-1. **CLI Interface**: Implement interactive command-line menu system
-2. **File Persistence**: Add CSV-based data storage and retrieval
-3. **Budget Management**: Implement spending limits and budget tracking
-4. **Report Generation**: Create monthly summaries and spending insights
+- **Initial Version**: 0.1.0
+- **Build Status**: ✅ All tests passing
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: Repository and Service Layer Implementation
 
 ## [0.0.0] - Author: Nnazirim Nwaogu - 2026-02-18
 
@@ -137,7 +209,7 @@ Additional labels for pre-release and build metadata are available as extensions
 
 ## Project Status
 
-- **Development Stage**: 1.0.0-ALPHA
+- **Development Stage**: 0.2.0
 - **Build Status**: ✅ All tests passing
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive

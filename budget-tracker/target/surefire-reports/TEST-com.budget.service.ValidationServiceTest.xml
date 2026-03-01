@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.model.TransactionTypeTest" time="0.014" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.service.ValidationServiceTest" time="0.057" tests="46" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,9 +59,50 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testFromStringCaseInsensitive" classname="com.budget.model.TransactionTypeTest" time="0.002"/>
-  <testcase name="testInvalidTransactionTypes" classname="com.budget.model.TransactionTypeTest" time="0.003"/>
-  <testcase name="testFromStringInvalid" classname="com.budget.model.TransactionTypeTest" time="0.003"/>
-  <testcase name="testFromStringValid" classname="com.budget.model.TransactionTypeTest" time="0.0"/>
-  <testcase name="testValidTransactionTypes" classname="com.budget.model.TransactionTypeTest" time="0.001"/>
+  <testcase name="testValidateCategoryNameTooLong" classname="com.budget.service.ValidationServiceTest" time="0.002"/>
+  <testcase name="testValidateTransactionTypeStringEmpty" classname="com.budget.service.ValidationServiceTest" time="0.002"/>
+  <testcase name="testValidateTransactionTypeStringValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidatePositiveValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateNotEmptyNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionDateValid" classname="com.budget.service.ValidationServiceTest" time="0.002"/>
+  <testcase name="testValidateStringNull" classname="com.budget.service.ValidationServiceTest" time="0.002"/>
+  <testcase name="testValidateBudgetCategoryValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateStringTooLong" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateBudgetCategoryNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateBudgetCategoryIncome" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateBudgetLimitZero" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionTypeStringNull" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionNotesTooLong" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateNotNullBigDecimalNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateCategoryDescriptionNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionDateNull" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionCategoryValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionTypeValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateGreaterThanZeroZero" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateLengthValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateGreaterThanZeroNegative" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionAmountZero" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidatePositiveNegative" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionDescriptionValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionCategoryNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateCategoryDescriptionTooLong" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateNotNullBigDecimalValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateStringEmpty" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateStringValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateNotNullValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateNotNullNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionTypeNull" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateCategoryNameValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateCategoryDescriptionValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionNotesValid" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateLengthTooLong" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionAmountValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateBudgetLimitValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionAmountNegative" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateBudgetLimitNegative" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateGreaterThanZeroValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateTransactionTypeStringInvalid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
+  <testcase name="testValidateNotEmptyEmpty" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateTransactionDescriptionTooLong" classname="com.budget.service.ValidationServiceTest" time="0.0"/>
+  <testcase name="testValidateNotEmptyValid" classname="com.budget.service.ValidationServiceTest" time="0.001"/>
 </testsuite>
