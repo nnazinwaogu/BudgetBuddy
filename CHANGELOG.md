@@ -2,15 +2,91 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.0] - Author: Nnazirim Nwaogu - 2026-02-28
+## [Unreleased]
+
+### Milestone 4: CLI Menu System Implementation
+
+#### CLI Interface Implementation
+- **Interactive Menu System**: Complete CLI with main menu, transaction management, filtering, and reporting
+- **User Input Handling**: Comprehensive input validation with user-friendly error messages
+- **Transaction Operations**: Add, view, filter, and generate reports for transactions
+- **Advanced Filtering**: Date range, category, and type-based filtering capabilities
+- **Reporting Features**: Income vs expense summary, monthly breakdown, category-wise reports
+- **Data Validation**: Integrated validation with existing ValidationService
+
+#### Application Enhancements
+- **App.java Entry Point**: Enhanced main application class with CLI initialization
+- **Package Structure**: New CLI package with organized components
+- **Test Coverage**: Comprehensive test suite for CLI functionality
+- **Error Handling**: Robust exception handling with user-friendly messages
+
+#### Technical Implementation
+- **Java 21**: Latest LTS features with proper source/target configuration
+- **Maven Build**: Standard Maven project structure with test execution
+- **JUnit 5.10.2**: Comprehensive testing framework with 100% test coverage
+- **Immutable Domain Model**: All model classes are final with private final fields
+
+#### Development Standards
+- **Coding Standards**: Consistent naming conventions and code organization
+- **Validation Patterns**: Comprehensive input validation with descriptive exceptions
+- **Testing Guidelines**: TDD approach with Arrange-Act-Assert pattern
+- **Documentation**: Complete project documentation and guidelines
+
+#### Project Structure
+```
+BudgetTracker/
+├── budget-tracker/                    # Maven project root
+│   ├── src/main/java/com/budget/
+│   │   ├── model/                   # Domain model classes
+│   │   ├── service/                 # Business logic layer
+│   │   ├── repository/              # Data access layer
+│   │   ├── cli/                     # CLI interface implementation
+│   │   └── App.java                 # Application entry point
+│   └── src/test/java/com/budget/     # Unit tests
+└── pom.xml                           # Maven build configuration
+```
+
+#### Future Roadmap (Planned)
+- **Phase 5**: File Persistence with CSV-based storage
+- **Phase 6**: Budget Management with spending limits and alerts
+- **Phase 7**: Advanced Reporting and data visualization
+
+#### Git Status
+- **Current Version**: 0.4.0
+- **Build Status**: ✅ All tests passing
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: File Persistence Implementation
+
+## [0.4.0] - Author: Nnazirim Nwaogu - 2026-03-02
 
 ### Milestone 3: Repository Layer and Transaction Service
 
-#### Repository Layer Implementation
-- **TransactionRepository Interface**: Complete CRUD operations with findById, findAll, save, delete, exists methods
-- **InMemoryTransactionRepository**: Thread-safe implementation using HashMap and ArrayList
-- **Thread Safety**: Synchronized methods for concurrent access patterns
-- **Data Structures**: HashMap for O(1) lookups, ArrayList for ordered queries
+### Added
+- ValidationService class with centralized validation methods
+- Comprehensive validation for all model classes using ValidationService
+- TransactionService class for CRUD operations and filtering
+- TransactionRepository interface and InMemoryTransactionRepository implementation
+- 45 new test methods in ValidationServiceTest
+- 45 new test methods in TransactionServiceTest
+- 18 new test methods in InMemoryTransactionRepositoryTest
+- Maven build configuration with main class specification
+- Executable JAR packaging with proper manifest
+- Milestone 3 implementation plan document
+
+### Changed
+- Updated Transaction class to use ValidationService for all validation
+- Updated Category class to use ValidationService for validation
+- Updated Budget class to use ValidationService for validation
+- Enhanced model validation patterns with centralized service
+- Updated project structure to include service and repository layers
+- Enhanced README with Milestone 3 features
+- Updated CHANGELOG.md to reflect new architecture components
+
+### Fixed
+- Validation edge cases with comprehensive test coverage
+- Thread safety in in-memory repository implementation
+- Error handling in service layer operations
 
 #### Service Layer Implementation
 - **TransactionService**: Complete business logic with CRUD operations and advanced filtering
@@ -75,33 +151,7 @@ BudgetTracker/
 - **Documentation**: Comprehensive
 - **Next Milestone**: CLI Interface Implementation
 
-### Added
-- ValidationService class with centralized validation methods
-- Comprehensive validation for all model classes using ValidationService
-- TransactionService class for CRUD operations and filtering
-- TransactionRepository interface and InMemoryTransactionRepository implementation
-- 45 new test methods in ValidationServiceTest
-- 45 new test methods in TransactionServiceTest
-- 18 new test methods in InMemoryTransactionRepositoryTest
-- Maven build configuration with main class specification
-- Executable JAR packaging with proper manifest
-- Milestone 3 implementation plan document
-
-### Changed
-- Updated Transaction class to use ValidationService for all validation
-- Updated Category class to use ValidationService for validation
-- Updated Budget class to use ValidationService for validation
-- Enhanced model validation patterns with centralized service
-- Updated project structure to include service and repository layers
-- Enhanced README with Milestone 3 features
-- Updated CHANGELOG.md to reflect new architecture components
-
-### Fixed
-- Validation edge cases with comprehensive test coverage
-- Thread safety in in-memory repository implementation
-- Error handling in service layer operations
-
-## [0.2.0] - Author: Nnazirim Nwaogu - 2026-02-28
+## [0.3.0] - Author: Nnazirim Nwaogu - 2026-02-28
 
 ### Milestone 3: In-Memory Storage and Transaction Service
 
@@ -184,7 +234,7 @@ BudgetTracker/
 - **Documentation**: Comprehensive
 - **Next Milestone**: CLI Interface Implementation
 
-## [0.1.0] - Author: Nnazirim Nwaogu - 2026-02-19
+## [0.2.0] - Author: Nnazirim Nwaogu - 2026-02-19
 
 #### Core Features
 - **Transaction Management**: Immutable transaction records with UUID, amount, date, category, and notes
