@@ -34,12 +34,57 @@ BudgetTracker helps you manage your personal finances by tracking income, expens
 - **Business Logic**: Advanced filtering, date range queries, category/type searches
 - **Error Handling**: Comprehensive null checks and validation
 
-### Planned Features
-- **CLI Interface**: Interactive command-line menu system
-- **File Persistence**: CSV-based data storage and retrieval
-- **Budget Management**: Set spending limits and receive alerts
-- **Report Generation**: Monthly summaries and spending insights
-- **Data Export**: Export data in multiple formats
+### CLI Interface (Milestone 4 Completed)
+- **Interactive Menu System**: Complete CLI with main menu, transaction management, filtering, and reporting
+- **User Input Handling**: Comprehensive input validation with user-friendly error messages
+- **Transaction Operations**: Add, view, filter, and generate reports for transactions
+- **Advanced Filtering**: Date range, category, and type-based filtering capabilities
+- **Reporting Features**: Income vs expense summary, monthly breakdown, category-wise reports
+- **Data Validation**: Integrated validation with existing ValidationService
+
+#### Application Enhancements
+- **App.java Entry Point**: Enhanced main application class with CLI initialization
+- **Package Structure**: New CLI package with organized components
+- **Test Coverage**: Comprehensive test suite for CLI functionality
+- **Error Handling**: Robust exception handling with user-friendly messages
+
+#### Technical Implementation
+- **Java 21**: Latest LTS features with proper source/target configuration
+- **Maven Build**: Standard Maven project structure with test execution
+- **JUnit 5.10.2**: Comprehensive testing framework with 100% test coverage
+- **Immutable Domain Model**: All model classes are final with private final fields
+
+#### Development Standards
+- **Coding Standards**: Consistent naming conventions and code organization
+- **Validation Patterns**: Comprehensive input validation with descriptive exceptions
+- **Testing Guidelines**: TDD approach with Arrange-Act-Assert pattern
+- **Documentation**: Complete project documentation and guidelines
+
+#### Project Structure
+```
+BudgetTracker/
+├── budget-tracker/                    # Maven project root
+│   ├── src/main/java/com/budget/
+│   │   ├── model/                   # Domain model classes
+│   │   ├── service/                 # Business logic layer
+│   │   ├── repository/              # Data access layer
+│   │   ├── cli/                     # CLI interface implementation
+│   │   └── App.java                 # Application entry point
+│   └── src/test/java/com/budget/     # Unit tests
+└── pom.xml                           # Maven build configuration
+```
+
+#### Future Roadmap (Planned)
+- **Phase 5**: File Persistence with CSV-based storage
+- **Phase 6**: Budget Management with spending limits and alerts
+- **Phase 7**: Advanced Reporting and data visualization
+
+#### Git Status
+- **Current Version**: 0.4.0
+- **Build Status**: ✅ All tests passing
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: File Persistence Implementation
 
 ## 🛠️ Technical Requirements
 
@@ -82,7 +127,10 @@ BudgetTracker follows a clean layered architecture with these completed layers:
 src/main/java/com/budget/
 ├── model/           # Domain entities (completed)
 ├── service/         # Business logic (completed - Milestone 2)
-├── repository/      # Data persistence (planned - Milestone 3)
+├── repository/      # Data persistence (completed - Milestone 3)
+├── cli/             # CLI interface (completed - Milestone 4)
+└── App.java         # Application entry point
+```
 ├── util/            # Helper utilities (planned)
 └── ui/              # User interface (planned)
 ```
@@ -136,7 +184,6 @@ mvn clean package
 - **Category**: Cannot be null
 - **Notes**: Optional, max 500 characters
 
-
 ### Test Coverage
 - **CategoryTest**: 5 tests for validation, equality, hashcode, and toString
 - **TransactionTest**: 6 tests for validation, equality, hashcode, toString, and notes
@@ -144,6 +191,9 @@ mvn clean package
 - **ValidationServiceTest**: 45 tests for validation methods
 - **TransactionServiceTest**: 11 tests for service operations
 - **InMemoryTransactionRepositoryTest**: 10 tests for repository implementation
+- **BudgetTrackerCLITest**: 8 tests for CLI functionality
+
+**Total Tests**: 91 passing JUnit 5 tests with 100% coverage
 
 ## 🚀 Roadmap
 
@@ -165,12 +215,12 @@ mvn clean package
 - [x] Repository pattern implementation
 - [x] Dependency injection design
 
-### Phase 4: CLI Interface (Planned)
-- [ ] Main menu system
-- [ ] Transaction input UI
-- [ ] Category management
-- [ ] Budget management
-- [ ] Report generation
+### Phase 4: CLI Interface (Completed)
+- [x] Main menu system
+- [x] Transaction input UI
+- [x] Category management
+- [x] Budget management
+- [x] Report generation
 
 ### Phase 5: Persistence (Planned)
 - [ ] File-based transaction storage
@@ -222,11 +272,11 @@ For questions, issues, or feature requests, please:
 
 ## 🎯 Project Status
 
-- **Version History**: [0.2.0](CHANGELOG.md)
+- **Version History**: [0.4.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
-- **Tests**: ✅ All passing (69/69)
+- **Tests**: ✅ All passing (91/91)
 - **Service Layer**: ✅ Complete
-- **Repository Layer**: ✅ Planned
-- **CLI Interface**: 🔄 In planning
+- **Repository Layer**: ✅ Complete
+- **CLI Interface**: ✅ Complete
 - **Persistence**: 🔄 In planning
 - **Documentation**: 📝 Comprehensive
