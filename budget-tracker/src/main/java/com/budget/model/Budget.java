@@ -4,12 +4,17 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.budget.service.ValidationService;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Budget {
     private final Category category;      // Immutable once set
     private BigDecimal monthlyLimit;      // Can be updated
     
-    public Budget(Category category, BigDecimal monthlyLimit) {
+    @JsonCreator
+    public Budget(
+        @JsonProperty("category") Category category,
+        @JsonProperty("monthlyLimit") BigDecimal monthlyLimit) {
         // Validate using ValidationService
         ValidationService.validateBudgetCategory(category);
         ValidationService.validateBudgetLimit(monthlyLimit);

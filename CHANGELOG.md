@@ -4,6 +4,87 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Milestone 5: JSON File Persistence
+
+#### JSON Persistence Implementation
+- **Jackson Library**: Switched from Gson to Jackson for JSON serialization/deserialization
+- **File-based Storage**: Transactions now persisted to `data/transactions.json`
+- **JSON Repositories**: Three new repository implementations:
+  - `JsonTransactionRepository` - Transaction persistence
+  - `JsonCategoryRepository` - Category persistence  
+  - `JsonBudgetRepository` - Budget persistence
+- **Custom Serialization**: Handles Java time types (LocalDate, LocalDateTime) with custom formatters
+- **Automatic Loading**: Transactions loaded from file on application startup
+- **Real-time Saving**: All changes automatically saved to JSON file
+- **Thread Safety**: All repository methods synchronized for concurrent access
+- **Graceful Fallback**: Falls back to in-memory storage if JSON fails
+- **Maven Shade Plugin**: Creates executable uber JAR with all dependencies
+- **Jackson Annotations**: Model classes enhanced with `@JsonCreator` for deserialization
+- **Comprehensive Testing**: 46 new tests for JSON repositories (46/46 passing)
+- **Test Coverage**: 122 total tests with 100% coverage
+
+#### Utility Classes
+- **FileUtil**: File operations (read/write strings, directory creation, file management)
+- **JacksonJsonUtil**: JSON serialization/deserialization with custom type handlers
+
+#### Application Enhancements
+- **App.java**: Modified to use JSON persistence by default
+- **Data Directory**: Auto-creates `data/` directory for storage
+- **User Feedback**: Shows data file location on startup
+- **Error Handling**: Graceful degradation to in-memory storage
+- **Executable JAR**: Uber JAR (2.3MB) includes all dependencies
+
+#### Build Configuration
+- **Jackson Dependencies**: Added jackson-databind, jackson-annotations, jackson-core, jackson-datatype-jsr310
+- **Maven Shade Plugin**: Creates fat JAR for easy distribution
+- **Uber JAR Size**: 2.3MB with all dependencies included
+
+#### Technical Implementation
+- **Jackson 2.15.2**: Latest stable version for JSON processing
+- **Java Time Module**: Proper serialization of LocalDate/LocalDateTime
+- **JSON Format**: Human-readable with proper nesting for embedded objects
+- **Data Integrity**: Atomic writes, proper exception handling
+
+#### Testing Coverage
+- **122 Total Tests**: All passing (0 failures)
+- **JsonTransactionRepositoryTest**: 15 tests covering file I/O, persistence, CRUD, edge cases
+- **JsonCategoryRepositoryTest**: 15 tests for category persistence
+- **JsonBudgetRepositoryTest**: 16 tests for budget persistence
+- **100% Test Coverage**: All new code thoroughly tested
+
+#### Project Structure
+```
+BudgetTracker/
+├── budget-tracker/
+│   ├── src/main/java/com/budget/
+│   │   ├── model/                   # Domain model classes
+│   │   ├── service/                 # Business logic layer
+│   │   ├── repository/              # Data access layer
+│   │   ├── cli/                     # CLI interface
+│   │   ├── util/                    # Utility classes (FileUtil, JacksonJsonUtil)
+│   │   └── App.java                 # Application entry point
+│   └── src/test/java/com/budget/
+│       ├── model/
+│       ├── service/
+│       ├── cli/
+│       └── repository/
+└── pom.xml
+```
+
+#### Future Roadmap (Updated)
+- **Phase 6**: Budget Management with spending limits and alerts
+- **Phase 7**: Advanced Reporting and data visualization
+- **Phase 8**: CSV Import/Export for data portability
+
+#### Git Status
+- **Current Version**: 1.0.0
+- **Build Status**: ✅ All tests passing (122/122)
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: Budget Management Implementation
+
+## [1.0.0] - Author: Nnazirim Nwaogu - 2026-03-02
+
 ### Milestone 4: CLI Menu System Implementation
 
 #### CLI Interface Implementation

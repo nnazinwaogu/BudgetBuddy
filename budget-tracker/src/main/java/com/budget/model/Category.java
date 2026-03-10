@@ -3,13 +3,19 @@ package com.budget.model;
 import java.util.Objects;
 
 import com.budget.service.ValidationService;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class Category {
     private final String name;
     private final String description;
     private final TransactionType transactionType;
     
-    public Category(String name, String description, TransactionType transactionType) {
+    @JsonCreator
+    public Category(
+        @JsonProperty("name") String name,
+        @JsonProperty("description") String description,
+        @JsonProperty("transactionType") TransactionType transactionType) {
         // Validate using ValidationService
         ValidationService.validateCategoryName(name);
         ValidationService.validateCategoryDescription(description);

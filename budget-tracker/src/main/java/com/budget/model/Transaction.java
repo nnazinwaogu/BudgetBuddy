@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 import com.budget.service.ValidationService;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class Transaction {
     private final String id;
@@ -17,23 +19,42 @@ public final class Transaction {
     private final Category category;
     private final String notes;
     
+    /**
+     * Primary constructor for creating new transactions.
+     * Generates a new UUID and sets loggedTime to current time.
+     */
     public Transaction(String description, BigDecimal amount, LocalDate date, Category category, String notes) {
-        //Pre-defined values
-        this.id = UUID.randomUUID().toString(); 
-        this.loggedTime = LocalDateTime.now(); 
-
+        this(UUID.randomUUID().toString(), description, amount, date, LocalDateTime.now(), category, notes);
+    }
+    
+    /**
+     * Jackson deserialization constructor.
+     * Used to reconstruct Transaction from JSON with all fields.
+     */
+    @JsonCreator
+    public Transaction(
+        @JsonProperty("id") String id,
+        @JsonProperty("description") String description,
+        @JsonProperty("amount") BigDecimal amount,
+        @JsonProperty("date") LocalDate date,
+        @JsonProperty("loggedTime") LocalDateTime loggedTime,
+        @JsonProperty("category") Category category,
+        @JsonProperty("notes") String notes) {
+        
         // Validate using ValidationService
-        ValidationService.validateNotNull(id, "Transaction ID");
-        ValidationService.validateNotNull(loggedTime, "Transaction logged time");
+        ValidationService.validateTransactionId(id);
+        ValidationService.validateTransactionLoggedTime(loggedTime);
         ValidationService.validateTransactionDescription(description);
         ValidationService.validateTransactionAmount(amount);
         ValidationService.validateTransactionDate(date);
         ValidationService.validateTransactionCategory(category);
         ValidationService.validateTransactionNotes(notes);
     
+        this.id = id;
         this.description = description.trim();
         this.amount = amount;
         this.date = date;
+        this.loggedTime = loggedTime;
         this.category = category;
         this.notes = notes != null ? notes.trim() : null;
     }

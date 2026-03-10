@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.model.TransactionTypeTest" time="0.018" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.budget.repository.JsonBudgetRepositoryTest" time="0.39" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,9 +59,20 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testFromStringCaseInsensitive" classname="com.budget.model.TransactionTypeTest" time="0.002"/>
-  <testcase name="testInvalidTransactionTypes" classname="com.budget.model.TransactionTypeTest" time="0.004"/>
-  <testcase name="testFromStringInvalid" classname="com.budget.model.TransactionTypeTest" time="0.004"/>
-  <testcase name="testFromStringValid" classname="com.budget.model.TransactionTypeTest" time="0.001"/>
-  <testcase name="testValidTransactionTypes" classname="com.budget.model.TransactionTypeTest" time="0.002"/>
+  <testcase name="testCorruptedJsonFile" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.232"/>
+  <testcase name="testBudgetWithDifferentCategories" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.055"/>
+  <testcase name="testPersistenceAcrossRestart" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.039"/>
+  <testcase name="testFindByCategoryNotFound" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
+  <testcase name="testUpdateBudget" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
+  <testcase name="testSaveMultipleBudgets" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.005"/>
+  <testcase name="testDeleteBudget" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.006"/>
+  <testcase name="testInitializationWithNewFile" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
+  <testcase name="testSaveAndFindBudget" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
+  <testcase name="testNullBudgetSave" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.001"/>
+  <testcase name="testPersistenceWithMultipleBudgets" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.007"/>
+  <testcase name="testFileContentFormat" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.005"/>
+  <testcase name="testNullCategoryOperations" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.004"/>
+  <testcase name="testFindAllReturnsCopy" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.004"/>
+  <testcase name="testEmptyFileHandling" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
+  <testcase name="testDeleteNonExistentBudget" classname="com.budget.repository.JsonBudgetRepositoryTest" time="0.002"/>
 </testsuite>
