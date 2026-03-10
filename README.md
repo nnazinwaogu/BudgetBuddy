@@ -14,7 +14,7 @@ BudgetBuddy helps you manage your personal finances by tracking income, expenses
 - **Category System**: Organize expenses and income into meaningful categories
 - **Type Distinction**: Separate income from expenses for accurate tracking
 - **Immutable Data Model**: Thread-safe, immutable domain objects
-- **Comprehensive Testing**: 122 passing JUnit 5 tests with 100% coverage
+- **Comprehensive Testing**: 138 passing JUnit 5 tests with 100% coverage
 
 ### Service Layer (Completed)
 - **ValidationService**: Centralized validation for all model classes
@@ -91,16 +91,16 @@ BudgetTracker/
 ```
 
 #### Testing Coverage
-- **122 Total Tests**: All passing with 100% coverage
+- **138 Total Tests**: All passing with 100% coverage
 - **Model Tests**: 26 tests (Transaction, Category, TransactionType, Budget)
 - **Service Tests**: 57 tests (ValidationService, TransactionService)
-- **Repository Tests**: 31 tests (InMemory + JSON implementations)
+- **Repository Tests**: 47 tests (InMemory + JSON implementations)
 - **CLI Tests**: 8 tests (user interface validation)
 - **JSON Repository Tests**: 46 new tests specifically for file persistence
 
 #### Git Status
 - **Current Version**: 1.0.0
-- **Build Status**: ✅ All tests passing (122/122)
+- **Build Status**: ✅ All tests passing (138/138)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
 - **Next Milestone**: Budget Management Implementation
@@ -231,7 +231,7 @@ mvn clean package
 - [x] Automatic data directory creation
 - [x] Graceful fallback to in-memory storage
 - [x] Maven Shade plugin for uber JAR packaging
-- [x] 46 new repository tests (122 total tests)
+- [x] 47 new repository tests (138 total tests)
 - [x] 100% code coverage maintained
 - [x] Production-ready executable JAR
 
@@ -298,7 +298,7 @@ For questions, issues, or feature requests, please:
 
 - **Version History**: [1.0.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
-- **Tests**: ✅ All passing (122/122)
+- **Tests**: ✅ All passing (138/138)
 - **Service Layer**: ✅ Complete
 - **Repository Layer**: ✅ Complete (JSON + InMemory)
 - **CLI Interface**: ✅ Complete

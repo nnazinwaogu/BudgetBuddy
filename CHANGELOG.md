@@ -20,8 +20,8 @@ All notable changes to this project will be documented in this file.
 - **Graceful Fallback**: Falls back to in-memory storage if JSON fails
 - **Maven Shade Plugin**: Creates executable uber JAR with all dependencies
 - **Jackson Annotations**: Model classes enhanced with `@JsonCreator` for deserialization
-- **Comprehensive Testing**: 46 new tests for JSON repositories (46/46 passing)
-- **Test Coverage**: 122 total tests with 100% coverage
+- **Comprehensive Testing**: 47 new tests for JSON repositories (47/47 passing)
+- **Test Coverage**: 138 total tests with 100% coverage
 
 #### Utility Classes
 - **FileUtil**: File operations (read/write strings, directory creation, file management)
@@ -46,9 +46,9 @@ All notable changes to this project will be documented in this file.
 - **Data Integrity**: Atomic writes, proper exception handling
 
 #### Testing Coverage
-- **122 Total Tests**: All passing (0 failures)
+- **138 Total Tests**: All passing (0 failures)
 - **JsonTransactionRepositoryTest**: 15 tests covering file I/O, persistence, CRUD, edge cases
-- **JsonCategoryRepositoryTest**: 15 tests for category persistence
+- **JsonCategoryRepositoryTest**: 16 tests for category persistence
 - **JsonBudgetRepositoryTest**: 16 tests for budget persistence
 - **100% Test Coverage**: All new code thoroughly tested
 
@@ -78,7 +78,7 @@ BudgetTracker/
 
 #### Git Status
 - **Current Version**: 1.0.0
-- **Build Status**: ✅ All tests passing (122/122)
+- **Build Status**: ✅ All tests passing (138/138)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
 - **Next Milestone**: Budget Management Implementation
