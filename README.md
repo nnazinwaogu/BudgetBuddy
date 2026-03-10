@@ -73,13 +73,13 @@ BudgetBuddy helps you manage your personal finances by tracking income, expenses
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/
+BudgetBuddy/
+├── budget-buddy/
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain entities (Transaction, Category, TransactionType, Budget)
 │   │   ├── service/                 # Business logic (ValidationService, TransactionService)
 │   │   ├── repository/              # Data persistence (all repository implementations)
-│   │   ├── cli/                     # CLI interface (BudgetTrackerCLI)
+│   │   ├── cli/                     # CLI interface (BudgetBuddyCLI)
 │   │   ├── util/                    # Utilities (FileUtil, JacksonJsonUtil)
 │   │   └── App.java                 # Application entry point
 │   └── src/test/java/com/budget/
@@ -120,7 +120,7 @@ Ensure you have Java 21 JDK and Maven installed on your system.
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd budget-tracker
+cd budget-buddy
 
 # Build the project
 mvn clean compile
@@ -135,12 +135,12 @@ mvn package -Dmaven.test.skip=true
 ### Run the Application
 ```bash
 # Execute the main class
-java -cp target/budget-tracker-1.0.0-SNAPSHOT.jar com.budget.App
+java -cp target/budget-buddy-1.0.0-SNAPSHOT.jar com.budget.App
 ```
 
 ## 🏗️ Architecture
 
-BudgetTracker follows a clean layered architecture with these completed layers:
+BudgetBuddy follows a clean layered architecture with these completed layers:
 
 ```
 src/main/java/com/budget/
@@ -260,7 +260,7 @@ mvn clean package
 
 ## 🤝 Contributing
 
-BudgetTracker welcomes contributions! Please follow these guidelines:
+BudgetBuddy welcomes contributions! Please follow these guidelines:
 
 ### Development Workflow
 1. Fork the repository

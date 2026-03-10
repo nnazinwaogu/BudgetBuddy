@@ -54,13 +54,13 @@ All notable changes to this project will be documented in this file.
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/
+BudgetBuddy/
+├── budget-buddy/
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain model classes
 │   │   ├── service/                 # Business logic layer
 │   │   ├── repository/              # Data access layer
-│   │   ├── cli/                     # CLI interface
+│   │   ├── cli/                     # CLI interface (BudgetBuddyCLI)
 │   │   ├── util/                    # Utility classes (FileUtil, JacksonJsonUtil)
 │   │   └── App.java                 # Application entry point
 │   └── src/test/java/com/budget/
@@ -115,8 +115,8 @@ BudgetTracker/
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/                    # Maven project root
+BudgetBuddy/
+├── budget-buddy/                    # Maven project root
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain model classes
 │   │   ├── service/                 # Business logic layer
@@ -208,8 +208,8 @@ BudgetTracker/
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/                    # Maven project root
+BudgetBuddy/
+├── budget-buddy/                    # Maven project root
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain model classes
 │   │   ├── service/                 # Business logic layer
@@ -291,8 +291,8 @@ BudgetTracker/
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/                    # Maven project root
+BudgetBuddy/
+├── budget-buddy/                    # Maven project root
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain model classes
 │   │   ├── service/                 # Business logic layer
@@ -357,8 +357,8 @@ BudgetTracker/
 
 #### Project Structure
 ```
-BudgetTracker/
-├── budget-tracker/                    # Maven project root
+BudgetBuddy/
+├── budget-buddy/                    # Maven project root
 │   ├── src/main/java/com/budget/
 │   │   └── model/                   # Domain model classes
 │   └── src/test/java/com/budget/model/ # Unit tests

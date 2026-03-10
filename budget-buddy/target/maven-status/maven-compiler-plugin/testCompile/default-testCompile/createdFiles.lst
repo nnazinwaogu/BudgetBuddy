@@ -1,0 +1,11 @@
+com\budget\repository\JsonBudgetRepositoryTest.class
+com\budget\model\TransactionTypeTest.class
+com\budget\repository\JsonTransactionRepositoryTest.class
+com\budget\service\ValidationServiceTest.class
+com\budget\model\BudgetTest.class
+com\budget\model\CategoryTest.class
+com\budget\model\TransactionTest.class
+com\budget\service\TransactionServiceTest.class
+com\budget\cli\BudgetBuddyCLITest.class
+com\budget\repository\JsonCategoryRepositoryTest.class
+com\budget\repository\InMemoryTransactionRepositoryTest.class
