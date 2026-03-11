@@ -114,7 +114,7 @@ BudgetBuddy/
 ## 📦 Getting Started
 
 ### Prerequisites
-Ensure you have Java 21 JDK and Maven installed on your system.
+Ensure you have **Java 21 JDK** installed. Maven is **not required** - the Maven wrapper (`mvnw`) will automatically download the correct Maven version.
 
 ### Build and Test
 ```bash
@@ -122,15 +122,16 @@ Ensure you have Java 21 JDK and Maven installed on your system.
 git clone <repository-url>
 cd budget-buddy
 
-# Build the project
-mvn clean compile
+# Build the project using Maven wrapper
+./mvnw clean compile
 
-# Run tests
-mvn test
+# Run tests using Maven wrapper
+./mvnw test
 
-# Package the application
-mvn package -Dmaven.test.skip=true
+# Package the application (skips tests)
+./mvnw package -Dmaven.test.skip=true
 ```
+*Note: Windows users should use `mvnw.cmd` instead of `./mvnw`.*
 
 ### Run the Application
 ```bash

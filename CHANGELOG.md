@@ -38,6 +38,12 @@ All notable changes to this project will be documented in this file.
 - **Jackson Dependencies**: Added jackson-databind, jackson-annotations, jackson-core, jackson-datatype-jsr310
 - **Maven Shade Plugin**: Creates fat JAR for easy distribution
 - **Uber JAR Size**: 2.3MB with all dependencies included
+- **Maven Wrapper**: Added mvnw scripts for consistent Maven version across environments
+
+#### Build Tool Improvements
+- **Maven Wrapper**: Added wrapper scripts to eliminate Maven installation requirement
+- **Wrapper Files**: `.mvn/wrapper/` with `maven-wrapper.properties`, `mvnw` (Unix), `mvnw.cmd` (Windows)
+- **Version Lock**: Ensures Maven 3.9.12 is used consistently across all builds
 
 #### Technical Implementation
 - **Jackson 2.15.2**: Latest stable version for JSON processing
