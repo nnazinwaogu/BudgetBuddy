@@ -15,7 +15,7 @@ BudgetBuddy helps you manage your personal finances by tracking income, expenses
 
 ### Installation
 
-1. **Download** the appropriate package for your operating system from the [GitHub Releases page](https://github.com/yourusername/budget-buddy/releases):
+1. **Download** the appropriate package for your operating system from the [GitHub Releases page](https://github.com/nnazinwaogu/BudgetBuddy/releases):
    - **Windows:** `budget-buddy-windows.zip`
    - **macOS/Linux:** `budget-buddy-unix.zip`
 
