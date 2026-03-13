@@ -1,3 +1,7 @@
-budget-buddy/nul
-budget-buddy/target
 budget-buddy/data
+budget-buddy/target/generated-sources
+budget-buddy/target/generated-test-sources
+budget-buddy/target/test-classes
+budget-buddy/target/maven-archiver
+budget-buddy/target/maven-status
+budget-buddy/target/test-classes 
