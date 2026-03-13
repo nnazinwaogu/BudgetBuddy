@@ -1,0 +1,112 @@
+name: Build and Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven Wrapper
+        run: |
+          if [ '${{ runner.os }}' = 'Windows' ]; then
+            budget-buddy/mvnw.cmd clean package -DskipTests
+          else
+            budget-buddy/mvnw clean package -DskipTests
+          fi
+        shell: bash
+
+      - name: Verify build output
+        run: |
+          if [ -f "budget-buddy/target/budget-buddy.jar" ]; then
+            echo "✅ JAR built successfully: budget-buddy/target/budget-buddy.jar"
+            ls -lh budget-buddy/target/budget-buddy.jar
+          else
+            echo "❌ ERROR: JAR file not found!"
+            exit 1
+          fi
+        shell: bash
+
+      - name: Prepare release assets
+        run: |
+          # Create staging directory
+          mkdir -p staging
+
+          # Copy JAR
+          cp budget-buddy/target/budget-buddy.jar staging/
+
+          # Copy launcher and license files
+          if [ '${{ runner.os }}' = 'Windows' ]; then
+            cp budget-buddy/budget-buddy.bat staging/budget-buddy.bat
+            ZIP_NAME="budget-buddy-windows.zip"
+          else
+            cp budget-buddy/budget-buddy.sh staging/budget-buddy.sh
+            chmod +x staging/budget-buddy.sh
+            ZIP_NAME="budget-buddy-unix.zip"
+          fi
+
+          if [ -f "README.md" ]; then
+            cp README.md staging/
+          fi
+
+          if [ -f "LICENSE" ]; then
+            cp LICENSE staging/
+          fi
+
+          # Create ZIP with platform-specific name
+          cd staging
+          zip -r "../$ZIP_NAME" *
+          cd ..
+
+          echo "Created: $ZIP_NAME"
+          ls -lh $ZIP_NAME
+        shell: bash
+
+      - name: Upload standalone JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: budget-buddy-jar-${{ matrix.os }}
+          path: budget-buddy/target/budget-buddy.jar
+
+      - name: Upload platform ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ contains(matrix.os, 'windows') && 'budget-buddy-windows' || 'budget-buddy-unix' }}
+          path: |
+            budget-buddy-*.zip
+
+  release:
+    name: Upload Release Assets
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/budget-buddy-jar-*/budget-buddy.jar
+            artifacts/budget-buddy-windows/budget-buddy-windows.zip
+            artifacts/budget-buddy-unix/budget-buddy-unix.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

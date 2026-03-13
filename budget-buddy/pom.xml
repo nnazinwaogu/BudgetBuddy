@@ -84,6 +84,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
+                    <finalName>budget-buddy</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.budget.App</mainClass>
@@ -102,6 +103,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <finalName>budget-buddy</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">

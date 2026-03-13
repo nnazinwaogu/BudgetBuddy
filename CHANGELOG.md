@@ -4,6 +4,61 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Distribution & Release Automation
+
+#### Distribution Improvements
+- **Executable JAR**: Renamed artifact to `budget-buddy.jar` for user-friendly distribution
+- **Platform Launchers**:
+  - `budget-buddy.bat` for Windows (checks Java, locates JAR, user-friendly errors)
+  - `budget-buddy.sh` for Unix/macOS (executable, checks Java, locates JAR)
+- **One-Command Execution**: Users can simply double-click (Windows) or run `./budget-buddy.sh` (Unix)
+- **Simplified Installation**: Download ZIP from GitHub Releases and run - no build required
+- **Automatic Data Directory**: App creates `data/` folder automatically on first run
+
+#### GitHub Actions Release Automation
+- **CI/CD Workflow**: `.github/workflows/release.yml` triggers automatically on GitHub release creation
+- **Matrix Build**: Builds on both Ubuntu and Windows for platform-specific packages
+- **Automated Packaging**: Creates platform-specific ZIP files with proper launchers
+- **Release Assets**: Automatically uploads:
+  - `budget-buddy-windows.zip` (JAR + .bat + README + LICENSE)
+  - `budget-buddy-unix.zip` (JAR + .sh + README + LICENSE)
+  - `budget-buddy.jar` (standalone executable)
+- **Zero Manual Packaging**: No manual steps needed for release builds
+
+#### Documentation Updates
+- **README.md**: Added "Quick Start" section for end users with download links and platform-specific instructions
+- **Troubleshooting**: Added common issues and solutions (Java installation, permissions, etc.)
+- **Developer Instructions**: Separated developer build instructions from end-user installation
+- **Project Status**: Updated to reflect distribution completion
+
+#### License & Legal
+- **MIT License**: Added `LICENSE` file at repository root
+- **Distribution Rights**: Clear licensing for end users
+
+#### Build Configuration
+- **Maven Shade Plugin**: Final name set to `budget-buddy` (no version in filename)
+- **JAR Naming**: Consistent naming across all build outputs for user-friendliness
+
+#### Technical Details
+- **Cross-Platform**: Fully functional on Windows, macOS, and Linux
+- **Java Version Detection**: Launchers verify Java 21+ is installed before running
+- **Smart JAR Location**: Launchers search multiple paths (current dir, target/, parent) for flexibility
+- **User-Friendly Errors**: Clear messages with download links when requirements not met
+
+#### Testing & Validation
+- **Manual Testing**: All launchers tested and working correctly
+- **Build Verification**: JAR creation verified with correct naming
+- **File Structure**: All release assets correctly positioned for GitHub Actions workflow
+
+#### Git Status
+- **Current Version**: 1.1.0
+- **Build Status**: ✅ All tests passing (138/138)
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: Budget Management Implementation
+
+## [1.1.0] - Author: Nnazirim Nwaogu - 2026-03-11
+
 ### Milestone 5: JSON File Persistence
 
 #### JSON Persistence Implementation

@@ -7,36 +7,6 @@ Written by: Nnazirim Nwaogu
 
 BudgetBuddy helps you manage your personal finances by tracking income, expenses, and providing insights into your spending patterns. Built with modern Java practices, this application emphasizes immutability, comprehensive testing, and clean architecture.
 
-## 📦 Quick Start (For End Users)
-
-### Prerequisites
-- **Java 21 or later** installed on your system
-  - Download from [Adoptium](https://adoptium.net/) (recommended) or [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
-
-### Installation
-
-1. **Download** the appropriate package for your operating system from the [GitHub Releases page](https://github.com/yourusername/budget-buddy/releases):
-   - **Windows:** `budget-buddy-windows.zip`
-   - **macOS/Linux:** `budget-buddy-unix.zip`
-
-2. **Extract** the ZIP file to any folder on your computer
-
-3. **Run** the application:
-   - **Windows:** Double-click `budget-buddy.bat`
-   - **macOS/Linux:** Open Terminal, navigate to the folder, and run `./budget-buddy.sh`
-
-That's it! The application will start and create a `data/` folder for storing your transactions.
-
-### Troubleshooting
-
-- **"Java is not recognized" or "command not found":** Ensure Java is in your PATH. Try `java -version` in a terminal/command prompt.
-- **"Java 21+ is required":** Update your Java installation to version 21 or later.
-- **Permission denied (macOS/Linux):** Run `chmod +x budget-buddy.sh` once to make the script executable.
-- **Data not persisting:** The app creates a `data/` folder in the same directory as the launcher. Ensure you have write permissions in that folder.
-
-### Building from Source
-If you prefer to build from source (or want to contribute), see the [Developer Instructions](#-developer-instructions) below.
-
 ## 📋 Current Features
 
 ### Core Model (Completed)
@@ -129,7 +99,7 @@ BudgetBuddy/
 - **JSON Repository Tests**: 46 new tests specifically for file persistence
 
 #### Git Status
-- **Current Version**: 1.1.0
+- **Current Version**: 1.0.0
 - **Build Status**: ✅ All tests passing (138/138)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
@@ -141,12 +111,10 @@ BudgetBuddy/
 - **Maven 3.8+** for build management
 - **Operating System**: Windows, macOS, or Linux
 
-## 💻 Developer Instructions
+## 📦 Getting Started
 
 ### Prerequisites
-- **Java 21 JDK** or later
-- **Git** (to clone the repository)
-- Maven is **not required** - the Maven wrapper (`mvnw` / `mvnw.cmd`) will automatically download the correct Maven version.
+Ensure you have **Java 21 JDK** installed. Maven is **not required** - the Maven wrapper (`mvnw`) will automatically download the correct Maven version.
 
 ### Build and Test
 ```bash
@@ -160,25 +128,15 @@ cd budget-buddy
 # Run tests using Maven wrapper
 ./mvnw test
 
-# Package the application (creates executable JAR)
-./mvnw package -DskipTests
+# Package the application (skips tests)
+./mvnw package -Dmaven.test.skip=true
 ```
 *Note: Windows users should use `mvnw.cmd` instead of `./mvnw`.*
 
 ### Run the Application
-
-**Using the launcher (recommended):**
 ```bash
-# Windows
-budget-buddy.bat
-
-# macOS/Linux
-./budget-buddy.sh
-```
-
-**Using command line directly:**
-```bash
-java -jar target/budget-buddy.jar
+# Execute the main class
+java -cp target/budget-buddy-1.0.0-SNAPSHOT.jar com.budget.App
 ```
 
 ## 🏗️ Architecture
@@ -339,13 +297,12 @@ For questions, issues, or feature requests, please:
 
 ## 🎯 Project Status
 
-- **Version History**: [1.1.0](CHANGELOG.md)
+- **Version History**: [1.0.0](CHANGELOG.md)
 - **Core Model**: ✅ Complete
 - **Tests**: ✅ All passing (138/138)
 - **Service Layer**: ✅ Complete
 - **Repository Layer**: ✅ Complete (JSON + InMemory)
 - **CLI Interface**: ✅ Complete
 - **Persistence**: ✅ Complete (JSON file-based with fallback)
-- **Distribution**: ✅ Complete (executable JAR, platform launchers, GitHub Actions release automation)
 - **Documentation**: 📝 Comprehensive
 - **Next Milestone**: Budget Management (Phase 6)
