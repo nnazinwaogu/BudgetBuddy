@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.budget.model.Transaction;
 import com.budget.model.Category;
 import com.budget.model.TransactionType;
+import com.budget.service.BudgetService;
 import com.budget.service.TransactionService;
 
 class BudgetBuddyCLITest {
@@ -16,7 +17,7 @@ class BudgetBuddyCLITest {
     
     @BeforeEach
     void setUp() {
-        cli = new BudgetBuddyCLI(null);
+        cli = new BudgetBuddyCLI(null, null);
     }
     
     @Test
