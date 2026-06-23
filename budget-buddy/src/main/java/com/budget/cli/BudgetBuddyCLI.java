@@ -1,5 +1,6 @@
 package com.budget.cli;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +15,7 @@ import com.budget.model.Category;
 import com.budget.model.TransactionType;
 import com.budget.service.TransactionService;
 import com.budget.service.ValidationService;
+import com.budget.util.CsvExporter;
 
 public class BudgetBuddyCLI {
     
@@ -51,6 +53,9 @@ public class BudgetBuddyCLI {
                         generateReport();
                         break;
                     case 5:
+                        exportTransactionsToCsv();
+                        break;
+                    case 6:
                         running = false;
                         System.out.println("Thank you for using BudgetBuddy!");
                         break;
@@ -79,7 +84,8 @@ public class BudgetBuddyCLI {
         System.out.println("2. View All Transactions");
         System.out.println("3. Filter Transactions");
         System.out.println("4. Generate Report");
-        System.out.println("5. Exit");
+        System.out.println("5. Export Transactions to CSV");
+        System.out.println("6. Exit");
     }
     
     private void addTransaction() {
@@ -256,16 +262,16 @@ public class BudgetBuddyCLI {
     
     private void generateCategoryReport() {
         System.out.println("\n=== Category-wise Expense Report ===");
-        
+
         List<Transaction> expenses = transactionService.getAllTransactions().stream()
             .filter(t -> t.getCategory().getTransactionType() == TransactionType.EXPENSE)
             .collect(Collectors.toList());
-            
+
         if (expenses.isEmpty()) {
             System.out.println("No expense transactions found.");
             return;
         }
-        
+
         expenses.stream()
             .collect(Collectors.groupingBy(
                 t -> t.getCategory().getName(),
@@ -275,7 +281,47 @@ public class BudgetBuddyCLI {
                 System.out.println(category + ": $" + total);
             });
     }
-    
+
+    private void exportTransactionsToCsv() {
+        System.out.println("\n=== Export Transactions to CSV ===");
+        System.out.println("1. Export All Transactions");
+        System.out.println("2. Export by Date Range");
+
+        int choice = readInt("Enter your choice: ");
+
+        List<Transaction> transactions;
+        switch (choice) {
+            case 1:
+                transactions = transactionService.getAllTransactions();
+                break;
+            case 2:
+                LocalDate startDate = readDate("Start date (yyyy-MM-dd): ");
+                LocalDate endDate = readDate("End date (yyyy-MM-dd): ");
+                transactions = transactionService.findTransactionsByDateRange(startDate, endDate);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
+
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions to export.");
+            return;
+        }
+
+        String filePathInput = readOptionalString("Export file path (default: data/transactions.csv): ", 500);
+        String filePath = (filePathInput != null) ? filePathInput : "data/transactions.csv";
+
+        try {
+            CsvExporter.exportTransactions(transactions, filePath);
+            System.out.println("\nExport successful!");
+            System.out.println("File: " + filePath);
+            System.out.println("Records exported: " + transactions.size());
+        } catch (IOException e) {
+            System.out.println("\nError exporting transactions: " + e.getMessage());
+        }
+    }
+
     private void displayFilteredTransactions(List<Transaction> transactions, String title) {
         System.out.println("\n" + title + " ===");
         
