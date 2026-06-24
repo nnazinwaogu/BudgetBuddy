@@ -287,7 +287,7 @@ mvn clean package
 - [ ] Over-budget warnings (>80% threshold)
 
 ### Phase 7: Advanced Reporting (Planned)
-- [ ] CSV export for transactions
+- [x] CSV export for transactions
 - [ ] Enhanced monthly reports with charts (ASCII)
 - [ ] Year-over-year comparisons
 - [ ] Category trend analysis

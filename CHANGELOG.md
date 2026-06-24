@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### CSV Export Phase 7
+
+#### New Features
+- **CsvExporter**: Pure Java CSV export utility with proper quote escaping
+- **CLI Export Menu**: Export all transactions or filter by date range
+- **Flexible Output**: Configurable file path with sensible default (data/transactions.csv)
+
+#### Testing
+- **10 new tests**: CsvExporterTest covers headers, data rows, empty lists, and special characters
+- **Total tests**: 148 (138 existing + 10 new), all passing
+
 ### Distribution & Release Automation
 
 #### Distribution Improvements
