@@ -133,7 +133,7 @@ BudgetBuddy/
 - **Build Status**: ✅ All tests passing (138/138)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
-- **Next Milestone**: Budget Management Implementation
+- **Next Milestone**: Advanced Reporting (Phase 7)
 
 ## 🛠️ Technical Requirements
 
@@ -278,16 +278,16 @@ mvn clean package
 - [x] 100% code coverage maintained
 - [x] Production-ready executable JAR
 
-### Phase 6: Budget Management (Next Milestone)
-- [ ] BudgetService for budget tracking and alerts
-- [ ] Budget UI integration in CLI
-- [ ] Spending vs budget comparison
-- [ ] Budget status display (within/over limits)
-- [ ] Budget configuration and editing
-- [ ] Over-budget warnings (>80% threshold)
+### Phase 6: Budget Management (✅ Completed)
+- [x] BudgetService for budget tracking and alerts
+- [x] Budget UI integration in CLI
+- [x] Spending vs budget comparison
+- [x] Budget status display (within/over limits)
+- [x] Budget configuration and editing
+- [x] Over-budget warnings (>80% threshold)
 
 ### Phase 7: Advanced Reporting (Planned)
-- [ ] CSV export for transactions
+- [x] CSV export for transactions
 - [ ] Enhanced monthly reports with charts (ASCII)
 - [ ] Year-over-year comparisons
 - [ ] Category trend analysis

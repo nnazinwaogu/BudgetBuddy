@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Budget Management Phase 6
+
+#### New Features
+- **BudgetService**: Full CRUD operations for budget limits per category
+- **Spending Tracking**: Automatically calculates spending vs budget limits by month
+- **Over-Budget Alerts**: Visual warning when spending exceeds 80% of budget limit
+- **CLI Integration**: New "Budget Management" menu with set/edit/view budgets and spending reports
+
+#### Testing
+- **15 new tests**: BudgetServiceTest covers CRUD, spending calculation, budget status, and edge cases
+- **Total tests**: 153 (138 existing + 15 new), all passing
+
+### CSV Export Phase 7
+
+#### New Features
+- **CsvExporter**: Pure Java CSV export utility with proper quote escaping
+- **CLI Export Menu**: Export all transactions or filter by date range
+- **Flexible Output**: Configurable file path with sensible default (data/transactions.csv)
+
+#### Testing
+- **10 new tests**: CsvExporterTest covers headers, data rows, empty lists, and special characters
+- **Total tests**: 148 (138 existing + 10 new), all passing
+
 ### Distribution & Release Automation
 
 #### Distribution Improvements
