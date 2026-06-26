@@ -44,11 +44,13 @@ If you prefer to build from source (or want to contribute), see the [Developer I
 - **Category System**: Organize expenses and income into meaningful categories
 - **Type Distinction**: Separate income from expenses for accurate tracking
 - **Immutable Data Model**: Thread-safe, immutable domain objects
-- **Comprehensive Testing**: 138 passing JUnit 5 tests with 100% coverage
+- **Comprehensive Testing**: 164 passing JUnit 5 tests with 100% coverage
 
 ### Service Layer (Completed)
 - **ValidationService**: Centralized validation for all model classes
 - **TransactionService**: CRUD operations and transaction filtering
+- **BudgetService**: CRUD ops and budget management
+- **ExportService**: CSV file export with proper field escaping
 - **Multiple Repository Implementations**: Both in-memory and JSON file-based storage
 - **Advanced Filtering**: Date range, category, and type-based searches
 
@@ -65,10 +67,20 @@ If you prefer to build from source (or want to contribute), see the [Developer I
 - **Interactive Menu System**: Complete CLI with main menu and sub-menus
 - **Transaction Management**: Add, view, filter, and delete transactions
 - **Advanced Filtering**: By date range, category, and transaction type
-- **Reporting Features**:
+- **Budget Management**: Add, view, filter, and delete budgets per categories
+- **Advanced Reporting**:
   - Income vs Expense Summary with net balance
-  - Monthly Expense Breakdown (grouped by month)
-  - Category-wise Expense Report
+  - Monthly Expense Breakdown (grouped by month, ASCII bar chart)
+  - Category-wise Expense Report (ASCII bar chart)
+  - Year-over-Year Comparison (month-specific, with ▲/▼ change indicators)
+  - Month-over-Month Comparison (full year, with change indicators, zero-fills missing months)
+  - Category Trend Analysis (last 12 months, with change indicators)
+  - ASCII bar charts with percentage labels proportional to max value
+- **CSV Export**:
+  - Export all transactions to CSV file
+  - Export filtered transactions (by date, category, or type) to CSV
+  - Auto-named files with folder selection with default `data/` directory
+  - CSV escaping (commas, quotes, newlines in fields)
 - **User Input Validation**: Comprehensive validation with helpful error messages
 - **Data Persistence**: All transactions automatically saved to JSON file
 - **Error Handling**: Graceful fallback to in-memory storage if file operations fail
@@ -107,7 +119,7 @@ BudgetBuddy/
 ├── budget-buddy/
 │   ├── src/main/java/com/budget/
 │   │   ├── model/                   # Domain entities (Transaction, Category, TransactionType, Budget)
-│   │   ├── service/                 # Business logic (ValidationService, TransactionService)
+│   │   ├── service/                 # Business logic (ValidationService, TransactionService, BudgetService, ExportService)
 │   │   ├── repository/              # Data persistence (all repository implementations)
 │   │   ├── cli/                     # CLI interface (BudgetBuddyCLI)
 │   │   ├── util/                    # Utilities (FileUtil, JacksonJsonUtil)
@@ -121,19 +133,18 @@ BudgetBuddy/
 ```
 
 #### Testing Coverage
-- **138 Total Tests**: All passing with 100% coverage
+- **164 Total Tests**: All passing with 100% coverage
 - **Model Tests**: 26 tests (Transaction, Category, TransactionType, Budget)
-- **Service Tests**: 57 tests (ValidationService, TransactionService)
+- **Service Tests**: 83 tests (ValidationService, TransactionService, BudgetService, ExportService)
 - **Repository Tests**: 47 tests (InMemory + JSON implementations)
 - **CLI Tests**: 8 tests (user interface validation)
-- **JSON Repository Tests**: 46 new tests specifically for file persistence
 
 #### Git Status
 - **Current Version**: 1.1.0
-- **Build Status**: ✅ All tests passing (138/138)
+- **Build Status**: ✅ All tests passing (164/164)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
-- **Next Milestone**: Budget Management Implementation
+- **Next Milestone**: Quality & Polish (Phase 8)
 
 ## 🛠️ Technical Requirements
 
@@ -278,20 +289,23 @@ mvn clean package
 - [x] 100% code coverage maintained
 - [x] Production-ready executable JAR
 
-### Phase 6: Budget Management (Next Milestone)
-- [ ] BudgetService for budget tracking and alerts
-- [ ] Budget UI integration in CLI
-- [ ] Spending vs budget comparison
-- [ ] Budget status display (within/over limits)
-- [ ] Budget configuration and editing
-- [ ] Over-budget warnings (>80% threshold)
+### Phase 6: Budget Management (✅ Completed)
+- [x] BudgetService for budget tracking and alerts
+- [x] Budget UI integration in CLI
+- [x] Spending vs budget comparison
+- [x] Budget status display (within/over limits)
+- [x] Budget configuration and editing
+- [x] Over-budget warnings (>80% threshold)
 
-### Phase 7: Advanced Reporting (Planned)
-- [ ] CSV export for transactions
-- [ ] Enhanced monthly reports with charts (ASCII)
-- [ ] Year-over-year comparisons
-- [ ] Category trend analysis
-- [ ] Export filtered data to custom files
+### Phase 7: Advanced Reporting (✅ Completed)
+- [x] CSV export service with field escaping
+- [x] CLI export menu (all transactions + filtered by date/category/type)
+- [x] ASCII bar charts for monthly and category reports
+- [x] Year-over-Year comparison with ▲/▼ change indicators
+- [x] Month-over-Month comparison (zero-fills missing months, shows average)
+- [x] Category trend analysis (last 12 months with change indicators)
+- [x] Export filtered transactions to user-specified folder
+- [x] 11 new ExportService tests (164 total)
 
 ### Phase 8: Quality & Polish (Planned)
 - [ ] Logging framework integration (SLF4J/Logback)
