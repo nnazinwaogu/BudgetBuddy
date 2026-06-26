@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Budget Management Phase 6
+
+#### New Features
+- **BudgetService**: Full CRUD operations for budget limits per category
+- **Spending Tracking**: Automatically calculates spending vs budget limits by month
+- **Over-Budget Alerts**: Visual warning when spending exceeds 80% of budget limit
+- **CLI Integration**: New "Budget Management" menu with set/edit/view budgets and spending reports
+
+#### Testing
+- **15 new tests**: BudgetServiceTest covers CRUD, spending calculation, budget status, and edge cases
+- **Total tests**: 153 (138 existing + 15 new), all passing
+
+#### Git Status
+- **Current Version**: 1.1.0-SNAPSHOT
+- **Build Status**: ✅ All tests passing (153/153)
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: Advanced Reporting (Phase 7)
+
+## [1.2.0] - Author: Nnazirim Nwaogu - 2026-06-26
+
 ### Distribution & Release Automation
 
 #### Distribution Improvements
