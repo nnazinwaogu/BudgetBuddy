@@ -4,6 +4,59 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Advanced Reporting Phase 7
+
+#### New Features
+- **ExportService**: CSV file export with proper field escaping (commas, quotes, newlines)
+- **CLI Export Menu**: Export all or filtered transactions (by date/category/type) to CSV
+- **Export to Folder**: User-specified output folder with default `data/` directory
+- **Auto-named Files**: Suggested filenames based on filter criteria
+- **ASCII Bar Charts**: `printBarChart()` renders proportional `█` bars with percentage labels (BAR_WIDTH=30)
+- **Year-over-Year Report**: Month-specific comparison across years with ▲/▼ change indicators and % change
+- **Month-over-Month Report**: Full-year monthly breakdown with zero-fill for missing months, change indicators, and average
+- **Category Trend Report**: Last 12 months of spending per category with consecutive-month change indicators
+
+#### Code Quality
+- **renderBar() Helper**: Extracted shared bar-rendering logic from 4 duplicated sites
+- **Single-Pass Summary**: `generateIncomeExpenseSummary()` uses one `for` loop instead of 3 stream passes
+- **Zero-Diff Fix**: ▲/▼/– arrows correctly handle zero-difference (no more "▲ +$0.00 (0.0%)")
+- **Fozen imports**: Removed 3 unused imports; replaced 5 FQN usages with proper imports
+- **Test Naming**: Renamed all 11 ExportServiceTest methods to match project conventions
+- **FQN → Imports**: Replaced `java.util.ArrayList` and `java.time.Month` with proper imports
+
+#### Bug Fixes
+- **CSV Filename Safety**: Category names sanitized of filesystem-unsafe characters before use
+- **Filter Type Match**: `exportFilterByCategory` now respects user-selected transaction type
+- **MoM Load Order**: Data loading deferred until after year input validation
+- **Bar Chart Header**: `printBarChart` now prints `labelHeader`/`valueHeader` as a header row
+
+#### Testing
+- **11 new ExportService tests**: Covers basic export, empty list, multiple transactions, comma/quote/newline escaping, null notes, null inputs, all-from-repo, mixed types, and amount formatting
+- **Total tests**: 164 (153 existing + 11 new), all passing
+
+## [1.3.0] - Author: Nnazirim Nwaogu - 2026-06-26
+
+### Budget Management Phase 6
+
+#### New Features
+- **BudgetService**: Full CRUD operations for budget limits per category
+- **Spending Tracking**: Automatically calculates spending vs budget limits by month
+- **Over-Budget Alerts**: Visual warning when spending exceeds 80% of budget limit
+- **CLI Integration**: New "Budget Management" menu with set/edit/view budgets and spending reports
+
+#### Testing
+- **15 new tests**: BudgetServiceTest covers CRUD, spending calculation, budget status, and edge cases
+- **Total tests**: 153 (138 existing + 15 new), all passing
+
+#### Git Status
+- **Current Version**: 1.1.0-SNAPSHOT
+- **Build Status**: ✅ All tests passing (153/153)
+- **Code Coverage**: 100%
+- **Documentation**: Comprehensive
+- **Next Milestone**: Advanced Reporting (Phase 7)
+
+## [1.2.0] - Author: Nnazirim Nwaogu - 2026-06-26
+
 ### Distribution & Release Automation
 
 #### Distribution Improvements
