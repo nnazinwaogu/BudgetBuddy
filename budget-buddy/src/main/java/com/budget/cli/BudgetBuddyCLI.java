@@ -2,16 +2,20 @@ package com.budget.cli;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import com.budget.model.Transaction;
+import com.budget.model.Budget;
 import com.budget.model.Category;
+import com.budget.model.Transaction;
 import com.budget.model.TransactionType;
+import com.budget.service.BudgetService;
 import com.budget.service.TransactionService;
 import com.budget.service.ValidationService;
 
@@ -21,9 +25,11 @@ public class BudgetBuddyCLI {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
     private final TransactionService transactionService;
-    
-    public BudgetBuddyCLI(TransactionService transactionService) {
+    private final BudgetService budgetService;
+
+    public BudgetBuddyCLI(TransactionService transactionService, BudgetService budgetService) {
         this.transactionService = transactionService;
+        this.budgetService = budgetService;
     }
     
     public void start() {
@@ -51,6 +57,9 @@ public class BudgetBuddyCLI {
                         generateReport();
                         break;
                     case 5:
+                        budgetManagement();
+                        break;
+                    case 6:
                         running = false;
                         System.out.println("Thank you for using BudgetBuddy!");
                         break;
@@ -79,7 +88,8 @@ public class BudgetBuddyCLI {
         System.out.println("2. View All Transactions");
         System.out.println("3. Filter Transactions");
         System.out.println("4. Generate Report");
-        System.out.println("5. Exit");
+        System.out.println("5. Budget Management");
+        System.out.println("6. Exit");
     }
     
     private void addTransaction() {
@@ -276,6 +286,151 @@ public class BudgetBuddyCLI {
             });
     }
     
+    private void budgetManagement() {
+        System.out.println("\n=== Budget Management ===");
+
+        boolean inBudgetMenu = true;
+        while (inBudgetMenu) {
+            System.out.println("\n--- Budget Menu ---");
+            System.out.println("1. Set Budget per Category");
+            System.out.println("2. View Budget Status");
+            System.out.println("3. View Spending vs Budget Report");
+            System.out.println("4. Go Back");
+
+            int choice = readInt("Enter your choice: ");
+
+            try {
+                switch (choice) {
+                    case 1:
+                        setBudget();
+                        break;
+                    case 2:
+                        viewBudgetStatus();
+                        break;
+                    case 3:
+                        viewSpendingReport();
+                        break;
+                    case 4:
+                        inBudgetMenu = false;
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    private void setBudget() {
+        System.out.println("\n--- Set Budget per Category ---");
+        System.out.println("Enter category details for the budget (expense categories only):");
+
+        TransactionType type = TransactionType.EXPENSE;
+        Category category = readCategory(type);
+
+        if (budgetService.getBudgetByCategory(category).isPresent()) {
+            System.out.println("Budget already exists for category '" + category.getName() + "'.");
+            System.out.print("Would you like to update it? (y/n): ");
+            String response = scanner.nextLine().trim();
+            if (!response.equalsIgnoreCase("y")) {
+                return;
+            }
+        }
+
+        BigDecimal limit = readBigDecimal("Monthly limit: ");
+        Budget budget = new Budget(category, limit);
+        budgetService.saveBudget(budget);
+        System.out.println("Budget set successfully for " + category.getName() + ": $" + limit + "/month");
+    }
+
+    private void viewBudgetStatus() {
+        System.out.println("\n--- Budget Status ---");
+
+        List<Budget> budgets = budgetService.getAllBudgets();
+        if (budgets.isEmpty()) {
+            System.out.println("No budgets set. Use 'Set Budget per Category' first.");
+            return;
+        }
+
+        YearMonth currentMonth = YearMonth.now();
+        System.out.printf("%-20s %-15s %-15s %-15s %s%n",
+            "Category", "Limit", "Spent", "Used", "Status");
+        System.out.println(String.format("%100s", "").replace(' ', '-'));
+
+        for (Budget budget : budgets) {
+            Category category = budget.getCategory();
+            try {
+                BudgetService.BudgetStatus status = budgetService.getBudgetStatus(category, currentMonth);
+                String statusLabel;
+                if (status.percentageUsed().compareTo(new BigDecimal("100.00")) >= 0) {
+                    statusLabel = "EXCEEDED!";
+                } else if (status.percentageUsed().compareTo(new BigDecimal("80.00")) > 0) {
+                    statusLabel = "OVER 80%!";
+                } else {
+                    statusLabel = "OK";
+                }
+                System.out.printf("%-20s $%-13s $%-13s %-13s %s%n",
+                    category.getName(),
+                    status.limit(),
+                    status.spending(),
+                    status.percentageUsed() + "%",
+                    statusLabel);
+            } catch (IllegalArgumentException e) {
+                System.out.printf("%-20s $%-13s %-15s %-15s %s%n",
+                    category.getName(),
+                    budget.getMonthlyLimit(),
+                    "N/A", "N/A", "No data");
+            }
+        }
+    }
+
+    private void viewSpendingReport() {
+        System.out.println("\n=== Spending vs Budget Report ===");
+
+        List<Budget> budgets = budgetService.getAllBudgets();
+        if (budgets.isEmpty()) {
+            System.out.println("No budgets set. Use 'Set Budget per Category' first.");
+            return;
+        }
+
+        YearMonth currentMonth = YearMonth.now();
+        BigDecimal totalBudget = BigDecimal.ZERO;
+        BigDecimal totalSpent = BigDecimal.ZERO;
+
+        System.out.printf("%-20s %-15s %-15s %-15s %-15s%n",
+            "Category", "Budget", "Spent", "Remaining", "Used %");
+        System.out.println(String.format("%100s", "").replace(' ', '-'));
+
+        for (Budget budget : budgets) {
+            Category category = budget.getCategory();
+            try {
+                BudgetService.BudgetStatus status = budgetService.getBudgetStatus(category, currentMonth);
+                BigDecimal remaining = status.limit().subtract(status.spending());
+                totalBudget = totalBudget.add(status.limit());
+                totalSpent = totalSpent.add(status.spending());
+
+                String warning = "";
+                if (status.percentageUsed().compareTo(new BigDecimal("80.00")) > 0) {
+                    warning = " *** WARNING: Approaching limit!";
+                }
+                System.out.printf("%-20s $%-13s $%-13s $%-13s %-13s%s%n",
+                    category.getName(),
+                    status.limit(),
+                    status.spending(),
+                    remaining.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : remaining,
+                    status.percentageUsed() + "%",
+                    warning);
+            } catch (IllegalArgumentException e) {
+                System.out.println(category.getName() + ": Unable to calculate spending.");
+            }
+        }
+
+        System.out.println(String.format("%100s", "").replace(' ', '-'));
+        System.out.printf("%-20s $%-13s $%-13s $%-13s%n",
+            "TOTAL", totalBudget, totalSpent, totalBudget.subtract(totalSpent));
+    }
+
     private void displayFilteredTransactions(List<Transaction> transactions, String title) {
         System.out.println("\n" + title + " ===");
         

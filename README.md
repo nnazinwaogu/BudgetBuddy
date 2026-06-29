@@ -121,19 +121,19 @@ BudgetBuddy/
 ```
 
 #### Testing Coverage
-- **138 Total Tests**: All passing with 100% coverage
+- **153 Total Tests**: All passing with 100% coverage
 - **Model Tests**: 26 tests (Transaction, Category, TransactionType, Budget)
-- **Service Tests**: 57 tests (ValidationService, TransactionService)
+- **Service Tests**: 72 tests (ValidationService, TransactionService, BudgetService)
 - **Repository Tests**: 47 tests (InMemory + JSON implementations)
 - **CLI Tests**: 8 tests (user interface validation)
 - **JSON Repository Tests**: 46 new tests specifically for file persistence
 
 #### Git Status
 - **Current Version**: 1.1.0
-- **Build Status**: ✅ All tests passing (138/138)
+- **Build Status**: ✅ All tests passing (153/153)
 - **Code Coverage**: 100%
 - **Documentation**: Comprehensive
-- **Next Milestone**: Budget Management Implementation
+- **Next Milestone**: Advanced Reporting (Phase 7)
 
 ## 🛠️ Technical Requirements
 
@@ -278,13 +278,13 @@ mvn clean package
 - [x] 100% code coverage maintained
 - [x] Production-ready executable JAR
 
-### Phase 6: Budget Management (Next Milestone)
-- [ ] BudgetService for budget tracking and alerts
-- [ ] Budget UI integration in CLI
-- [ ] Spending vs budget comparison
-- [ ] Budget status display (within/over limits)
-- [ ] Budget configuration and editing
-- [ ] Over-budget warnings (>80% threshold)
+### Phase 6: Budget Management (✅ Completed)
+- [x] BudgetService for budget tracking and alerts
+- [x] Budget UI integration in CLI
+- [x] Spending vs budget comparison
+- [x] Budget status display (within/over limits)
+- [x] Budget configuration and editing
+- [x] Over-budget warnings (>80% threshold)
 
 ### Phase 7: Advanced Reporting (Planned)
 - [ ] CSV export for transactions
